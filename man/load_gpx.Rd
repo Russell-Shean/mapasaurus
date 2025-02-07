@@ -10,10 +10,10 @@ load_gpx(path)
 \item{path}{A character vector with one element. This should be the path to a locally stored gpx file.}
 }
 \value{
-A dataframe
+A simple features (sf) dataframe
 }
 \description{
-This function loads a locally stored .gpx file and returns a dataframe.
+This function loads a locally stored .gpx file and returns a simple features (sf) dataframe.
 }
 \examples{
   
