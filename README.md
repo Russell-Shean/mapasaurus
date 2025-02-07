@@ -5,5 +5,13 @@ Introducing the stravinator! An R package to process your gpx files like strava 
   [![Codecov test coverage](https://codecov.io/gh/Russell-Shean/stravinator/graph/badge.svg)](https://app.codecov.io/gh/Russell-Shean/stravinator)
 <!-- badges: end -->
 
-# Setup     
+# Getting started
+The package can be installed from Github using the following command:    
+```r
+remotes::install_github("Russell-Shean/stravinator")
+```
+
+
+
+# Developer Notes   
 To create the package and GitHub repo I followed these <a href="https://r-pkgs.org/whole-game.html">instructions</a>
