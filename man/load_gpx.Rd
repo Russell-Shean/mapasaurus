@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_gpx.R
 \name{load_gpx}
 \alias{load_gpx}
-\title{Title}
+\title{Load a .gpx file from disk}
 \usage{
 load_gpx(path)
 }
@@ -13,8 +13,9 @@ load_gpx(path)
 A dataframe
 }
 \description{
-This function allows you to vectorise multiple \code{\link[=switch]{switch()}} statements. Each
-case is evaluated sequentially and the first match for each element
-determines the corresponding value in the output vector. If no cases match,
-the \code{.default} is used.
+This function loads a locally stored .gpx file using the track_points layer
+and returns a simple features (sf) data frame
+}
+\examples{
+activity1 <- load_gpx("C:/Users/your user name/activities/activity1.gpx")
 }
