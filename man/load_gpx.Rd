@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_gpx.R
 \name{load_gpx}
 \alias{load_gpx}
-\title{Load a .gpx file from disk}
+\title{Load .gpx files from disk}
 \usage{
 load_gpx(path)
 }
@@ -13,9 +13,9 @@ load_gpx(path)
 A dataframe
 }
 \description{
-This function loads a locally stored .gpx file using the track_points layer
-and returns a simple features (sf) data frame
+This function loads a locally stored .gpx file and returns a dataframe.
 }
 \examples{
-activity1 <- load_gpx("C:/Users/your user name/activities/activity1.gpx")
+  
+activity1 <- load_gpx("C:/Users/my_user_name/activities/activity1.gpx")
 }

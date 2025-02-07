@@ -20,3 +20,6 @@ Imports: dplyr (>= 1.0.0),
   sf
 URL: https://github.com/Russell-Shean/stravinator, https://russell-shean.github.io/stravinator/
 BugReports: https://github.com/Russell-Shean/stravinator/issues    
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
