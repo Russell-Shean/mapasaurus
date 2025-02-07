@@ -1,5 +1,5 @@
 # stravinator
-Introducing the stravinator! An R package to process your gpx files like strava does 
+Introducing the stravinator! An R package to process your gpx files like strava does. We just started on this package, so check back later for anything actually useful
 <!-- badges: start -->
   [![R-CMD-check](https://github.com/Russell-Shean/stravinator/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Russell-Shean/stravinator/actions/workflows/R-CMD-check.yaml)
   [![Codecov test coverage](https://codecov.io/gh/Russell-Shean/stravinator/graph/badge.svg)](https://app.codecov.io/gh/Russell-Shean/stravinator)
