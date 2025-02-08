@@ -12,7 +12,7 @@
 
 load_gpx <- function(path){
   
-  
+  activity <- sf::st_read(path, )
   print(path)
   
 }

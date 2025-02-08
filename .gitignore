@@ -48,3 +48,6 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 docs
+
+# user created data folder
+data/
