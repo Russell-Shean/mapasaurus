@@ -1,4 +1,4 @@
-# Mapasaurus <a href="https://russell-shean.github.io/mapasaurus/"><img src="https://github.com/user-attachments/assets/3497de47-b248-4342-8cd7-2598d944b5ef" align="right" height="240" /></a>
+# Mapasaurus <a href="https://russell-shean.github.io/mapasaurus/"><img src="https://github.com/user-attachments/assets/55d58f4b-748b-434d-9063-6d500dab8dc8" align="right" height="240" /></a>
 Introducing the mapasaurus! An R package to process your gpx files and make beautiful maps and stuff. We just started on this package, so check back later for anything actually useful.    
 
 <!-- badges: start -->
