@@ -17,7 +17,8 @@ RoxygenNote: 7.3.2
 Imports: dplyr (>= 1.0.0),
   ggplot2,
   leaflet,
-  sf
+  sf,
+  shiny
 URL: https://github.com/Russell-Shean/stravinator, https://russell-shean.github.io/stravinator/
 BugReports: https://github.com/Russell-Shean/stravinator/issues    
 Suggests: 
