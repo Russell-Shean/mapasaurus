@@ -16,6 +16,8 @@ A simple features (sf) dataframe
 This function loads a locally stored .gpx file and returns a simple features (sf) dataframe.
 }
 \examples{
-  
+\dontrun{   
 activity1 <- load_gpx("C:/Users/my_user_name/activities/activity1.gpx")
+}
+
 }

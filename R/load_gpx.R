@@ -7,12 +7,15 @@
 #'
 #' @return A simple features (sf) dataframe
 #' @export
-#' @examples   
+#' @examples
+#' \dontrun{   
 #' activity1 <- load_gpx("C:/Users/my_user_name/activities/activity1.gpx")
+#' }
+#' 
 
 load_gpx <- function(path){
   
-  activity <- sf::st_read(path, )
+  activity <- sf::st_read(path)
   print(path)
   
 }

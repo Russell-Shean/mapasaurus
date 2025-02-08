@@ -18,14 +18,17 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Return a dataframe of activies
-#' activities_df <- process_strava_archive(zip_file_path = "C:/Users/my_user_name/downloads/export_1111111.zip", 
+#' activities_df <- process_strava_archive(zip_file_path = "export_1111111.zip", 
 #'                                         outdir = "./data")
 #' 
 #' # unzip the archive without creating a dataframe of activies
 #' # return files to the current working directory
 #' 
-#' process_strava_archive(zip_file_path = "C:/Users/my_user_name/downloads/export_1111111.zip")
+#' process_strava_archive(
+#'         zip_file_path = "export_1111111.zip")
+#'         }
 #' 
 process_strava_archive <- function(zip_file_path, outdir = getwd()){
   
@@ -42,7 +45,7 @@ process_strava_archive <- function(zip_file_path, outdir = getwd()){
   }
   
   # unzip file and move content into output directory
-  unzip(zipfile = zip_file_path, exdir = outdir) 
+  utils::unzip(zipfile = zip_file_path, exdir = outdir) 
   
   # load activities csv from output directory
   activities_path <- file.path(outdir, "activities.csv")
@@ -55,7 +58,7 @@ process_strava_archive <- function(zip_file_path, outdir = getwd()){
   }
   
   
-  activities_df <- read.csv(file = activities_path)
+  activities_df <- utils::read.csv(file = activities_path)
   
   return(activities_df)
   

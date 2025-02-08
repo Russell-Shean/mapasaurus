@@ -1,5 +1,5 @@
 Package: stravinator
-Title: Make Cool Maps and Visualizations From .Gpx Files.
+Title: Make Cool Maps and Visualizations From .Gpx Files
 Version: 0.0.0.9000
 Authors@R: c(person("Russell", "Shean", 
   email = "russshean@gmail.com", 
@@ -9,7 +9,7 @@ Authors@R: c(person("Russell", "Shean",
   email = "erikpieterdejong@gmail.com",
   role = c("aut"), 
   comment = c(ORCID = "0000-0002-5744-0176")))
-Description: This package creates maps, elevation profiles, and shiny apps from .gpx similiar to what you can with strava. 
+Description: This package creates maps, elevation profiles, and shiny apps from .gpx similiar to what you can with strava.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

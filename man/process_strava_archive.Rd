@@ -25,13 +25,16 @@ See Strava's guide to downloading your archive: https://support.strava.com/hc/en
 Note: Use this function for bulk downloads not individual activities!
 }
 \examples{
+\dontrun{
 # Return a dataframe of activies
-activities_df <- process_strava_archive(zip_file_path = "C:/Users/my_user_name/downloads/export_1111111.zip", 
+activities_df <- process_strava_archive(zip_file_path = "export_1111111.zip", 
                                         outdir = "./data")
 
 # unzip the archive without creating a dataframe of activies
 # return files to the current working directory
 
-process_strava_archive(zip_file_path = "C:/Users/my_user_name/downloads/export_1111111.zip")
+process_strava_archive(
+        zip_file_path = "export_1111111.zip")
+        }
 
 }
