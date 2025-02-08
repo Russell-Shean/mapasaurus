@@ -13,6 +13,11 @@ The package can be installed from Github using the following command:
 ```r
 remotes::install_github("Russell-Shean/stravinator")
 ```
+The package currently includes a shiny app that allows you to upload a .gpx file and see a map of the route. To launch the app use the following code:    
+```r
+library(stravinator)
+launch_route_explorer()
+```
 
 
 
