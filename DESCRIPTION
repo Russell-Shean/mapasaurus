@@ -1,4 +1,4 @@
-Package: stravinator
+Package: mapasaurus
 Title: Make Cool Maps and Visualizations From .Gpx Files
 Version: 0.0.0.9000
 Authors@R: c(person("Russell", "Shean", 
@@ -19,8 +19,8 @@ Imports: dplyr (>= 1.0.0),
   leaflet,
   sf,
   shiny
-URL: https://github.com/Russell-Shean/stravinator, https://russell-shean.github.io/stravinator/
-BugReports: https://github.com/Russell-Shean/stravinator/issues    
+URL: https://github.com/Russell-Shean/stravinator, https://russell-shean.github.io/mapasaurus/
+BugReports: https://github.com/Russell-Shean/mapasaurus/issues    
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
