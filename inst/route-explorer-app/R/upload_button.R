@@ -1,5 +1,6 @@
 # This is a shiny module for an upload button
 # Chatgpt is spooky good 😳
+# see also: https://chatgpt.com/c/67a7ace9-f6e8-8008-a3c7-2397147edb5e
 
 # UI Module
 gpxUploadUI <- function(id) {
