@@ -17,4 +17,6 @@ remotes::install_github("Russell-Shean/stravinator")
 
 
 # Developer Notes   
-To create the package and GitHub repo I followed these <a href="https://r-pkgs.org/whole-game.html">instructions</a>
+To create the package and GitHub repo I followed these <a href="https://r-pkgs.org/whole-game.html">instructions</a>     
+Hex sticker was made using Dall-E 3     
+Shiny app was included in package using this structure: https://stackoverflow.com/a/49623819/16502170
