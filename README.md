@@ -15,7 +15,7 @@ remotes::install_github("Russell-Shean/mapasaurus")
 ```
 The package currently includes a shiny app that allows you to upload a .gpx file and see a map of the route. To launch the app use the following code:    
 ```r
-library(stravinator)
+library(mapasaurus)
 launch_route_explorer()
 ```
 
