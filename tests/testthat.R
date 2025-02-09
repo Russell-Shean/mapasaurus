@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(stravinator)
+library(mapasaurus)
 
-test_check("stravinator")
+test_check("mapasaurus")
