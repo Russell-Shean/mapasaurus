@@ -26,7 +26,7 @@ jobs:
           # source: https://www.r-bloggers.com/2023/01/install-the-sf-package-on-ubuntu-20-04/
           sudo add-apt-repository ppa:ubuntugis/ppa
           sudo apt update && sudo apt upgrade
-          sudo apt-get install libgdal-dev gdal-bin libproj15 libproj19 libproj-dev
+          sudo apt-get install libgdal-dev gdal-bin libproj-dev
           sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
           sudo apt update && sudo apt install r-cran-sf
           
