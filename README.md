@@ -18,6 +18,7 @@ The package currently includes a shiny app that allows you to upload a .gpx file
 library(mapasaurus)
 launch_route_explorer()
 ```
+An already published version of the app is also available here: https://russellshean.shinyapps.io/mapasaurus/
 
 
 
