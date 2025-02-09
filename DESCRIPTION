@@ -19,7 +19,7 @@ Imports: dplyr (>= 1.0.0),
   leaflet,
   sf,
   shiny
-URL: https://github.com/Russell-Shean/stravinator, https://russell-shean.github.io/mapasaurus/
+URL: https://github.com/Russell-Shean/mapasaurus, https://russell-shean.github.io/mapasaurus/
 BugReports: https://github.com/Russell-Shean/mapasaurus/issues    
 Suggests: 
     testthat (>= 3.0.0)
