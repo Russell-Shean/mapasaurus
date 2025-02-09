@@ -12,10 +12,10 @@
 #' launch_route_explorer()
 #' }
 launch_route_explorer <- function() {
-  appDir <- system.file("route-explorer-app", package = "stravinator")
+  appDir <- system.file("route-explorer-app", package = "mapasaurs")
   
   if (appDir == "") {
-    stop("Could not find route-explorer-app. Try re-installing `stravinator`.", call. = FALSE)
+    stop("Could not find route-explorer-app. Try re-installing `mapasaurus`.", call. = FALSE)
   }
   
   shiny::runApp(appDir, display.mode = "normal")
