@@ -22,13 +22,13 @@ jobs:
       - name: install linux dependencies
         run: |
 
-          # install spatial dependencies for linux
-          # source: https://www.r-bloggers.com/2023/01/install-the-sf-package-on-ubuntu-20-04/
-          sudo add-apt-repository ppa:ubuntugis/ppa
-          sudo apt update -y && sudo apt upgrade -y
-          sudo apt-get install -y libgdal-dev gdal-bin libproj-dev
-          sudo add-apt-repository ppa:c2d4u.team/c2d4u4.0+
-          sudo apt update && sudo apt install -y r-cran-sf
+          # chatgpt more accurate than R bloggers for what the sf package actually needs on ubuntu??
+          sudo apt update && sudo apt install -y \
+          libudunits2-dev \
+          libgdal-dev \
+          libgeos-dev \
+          libproj-dev \
+          libsqlite3-dev
           
       - uses: actions/checkout@v2
       - name: deploy
