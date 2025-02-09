@@ -26,22 +26,22 @@ jobs:
           sudo apt-get update && sudo apt-get install -y \
           libcurl4-openssl-dev \
           libharfbuzz-dev \
-          libfribidi-dev \
-          libudunits2-dev \
-          libgdal-dev \
-          libgeos-dev \
-          libproj-dev \
-          libsqlite3-dev \
-          libudunits2-dev \
-          libnetcdf-dev \
-          gdal-bin \
-          libtiff-dev \
-          libfftw3-dev \
-          libhdf4-alt-dev \
-          libhdf5-dev \
-          libcurl4-openssl-dev \
-          libxml2-dev \
-          libcgal-dev
+          libfribidi-dev #\
+          #libudunits2-dev \
+          #libgdal-dev \
+          #libgeos-dev \
+          #libproj-dev \
+          #libsqlite3-dev \
+          #libudunits2-dev \
+          #libnetcdf-dev \
+          #gdal-bin \
+          #libtiff-dev \
+          #libfftw3-dev \
+          #libhdf4-alt-dev \
+          #libhdf5-dev \
+          #libcurl4-openssl-dev \
+          #libxml2-dev \
+          #libcgal-dev
           
       - uses: actions/checkout@v2
       - name: deploy
