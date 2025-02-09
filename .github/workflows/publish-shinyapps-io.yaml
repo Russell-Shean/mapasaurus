@@ -23,7 +23,7 @@ jobs:
         run: |
 
           # chatgpt more accurate than R bloggers for what the sf package actually needs on ubuntu??
-          sudo apt update && sudo apt install -y \
+          sudo apt-get update && sudo apt-get install -y \
           libudunits2-dev \
           libgdal-dev \
           libgeos-dev \
@@ -38,7 +38,6 @@ jobs:
           libhdf5-dev \
           libcurl4-openssl-dev \
           libxml2-dev \
-          liblwgeom-dev \
           libcgal-dev
           
       - uses: actions/checkout@v2
