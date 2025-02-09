@@ -28,7 +28,18 @@ jobs:
           libgdal-dev \
           libgeos-dev \
           libproj-dev \
-          libsqlite3-dev
+          libsqlite3-dev \
+          libudunits2-dev \
+          libnetcdf-dev \
+          gdal-bin \
+          libtiff-dev \
+          libfftw3-dev \
+          libhdf4-alt-dev \
+          libhdf5-dev \
+          libcurl4-openssl-dev \
+          libxml2-dev \
+          liblwgeom-dev \
+          libcgal-dev
           
       - uses: actions/checkout@v2
       - name: deploy
