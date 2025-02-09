@@ -19,33 +19,8 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[automated]') && !contains(github.event.head_commit.message, '[no-deploy]')"
     runs-on: ubuntu-latest
     steps:
-      - name: install linux dependencies
-        run: |
-
-          # chatgpt more accurate than R bloggers for what the sf package actually needs on ubuntu??
-          sudo apt-get update && sudo apt-get install -y \
-          libcurl4-openssl-dev \
-          libharfbuzz-dev \
-          libfribidi-dev #\
-          #libudunits2-dev \
-          #libgdal-dev \
-          #libgeos-dev \
-          #libproj-dev \
-          #libsqlite3-dev \
-          #libudunits2-dev \
-          #libnetcdf-dev \
-          #gdal-bin \
-          #libtiff-dev \
-          #libfftw3-dev \
-          #libhdf4-alt-dev \
-          #libhdf5-dev \
-          #libcurl4-openssl-dev \
-          #libxml2-dev \
-          #libcgal-dev
-          
       - uses: actions/checkout@v2
-      - name: deploy
-        uses: kidsneuro-lab/shinyapps-deploy-github-action@forceupdate-flag-added 
+      - uses: Russell-Shean/shinyapps-deploy-sf-depends@v2
         with:
           # account and application name (https://<accountName>.shinyapps.io/<appName>)
           appName: mapasaurus
