@@ -10,6 +10,7 @@ on:
       - man/**
       - tests/**
       - README.md
+      - DESCRIPTION
 
   pull_request:
   release:
