@@ -4,7 +4,11 @@ Version: 0.0.0.9000
 Authors@R: c(person("Russell", "Shean", 
   email = "russshean@gmail.com", 
   role = c("aut", "cre"), 
+<<<<<<< HEAD
   comment = c(ORCID = "0000-0002-6983-2759")),
+=======
+  comment = c(ORCID = "0000-0001-6248-4408")),
+>>>>>>> 9f046ffc70c00ab7ec44543ed34478c6cd7bf102
   person("Erik", "de Jong",
   email = "erikpieterdejong@gmail.com",
   role = c("aut"), 

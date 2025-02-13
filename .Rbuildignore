@@ -1,9 +1,0 @@
-^LICENSE\.md$
-^\.github$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
-
-^data$
-^.*\.Rproj$
-^\.Rproj\.user$
