@@ -9,6 +9,7 @@ gpxUploadUI <- function(id) {
     fileInput(ns("gpx_file"), "Upload GPX File", 
               accept = c(".gpx")),
     #DTOutput(ns("gpx_table"))
+    fluidRow(column(12, textOutput())),
     leafletOutput(ns("activity_map"), height = "500px")
   )
 }
@@ -30,21 +31,30 @@ gpxUploadServer <- function(id) {
       req(input$gpx_file)
       
       # Read the GPX file using sf::st_read()
-      sf_data <- st_read(input$gpx_file$datapath, layer = "tracks", quiet = TRUE)
+      activity_tracks <- st_read(input$gpx_file$datapath, layer = "tracks", quiet = TRUE)
       
       return(sf_data)
     })
     
     # output$gpx_table <- renderDT({
-    #  req(gpx_data())
-    # datatable(gpx_data())
+    #  req(activity_tracks())
+    # datatable(activity_tracks())
     #})
+    
+    output$activity_title <- renderText({
+      
+      req(activity_tracks())
+      
+      activity_tracks()$name
+      
+      
+    })
     
     output$activity_map <- renderLeaflet({
       
-      req(gpx_data())
+      req(activity_tracks())
       
-      gpx_data() |> 
+      activity_tracks() |> 
         leaflet() |> 
         addTiles() |>
         addPolylines(opacity = 1)
