@@ -10,10 +10,6 @@ on:
       - man/**
       - tests/**
       - README.md
-<<<<<<< HEAD
-=======
-      - DESCRIPTION
->>>>>>> 9f046ffc70c00ab7ec44543ed34478c6cd7bf102
 
   pull_request:
   release:
