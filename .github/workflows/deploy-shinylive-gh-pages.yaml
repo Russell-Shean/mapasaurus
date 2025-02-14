@@ -45,6 +45,8 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -76,19 +78,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: "site"
-
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: build
-
-    runs-on: ubuntu-latest
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
-
-    steps:
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
