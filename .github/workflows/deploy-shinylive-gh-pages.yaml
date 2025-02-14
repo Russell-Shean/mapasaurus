@@ -96,7 +96,8 @@ jobs:
         with:
           clean: false
           branch: gh-pages
-          folder: docs
+          folder: site
+          target-folder: shinyliveapp
 
     # Deploy to the github-pages environment
     #environment:
