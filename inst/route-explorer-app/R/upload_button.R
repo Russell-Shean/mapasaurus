@@ -14,7 +14,8 @@ gpxUploadUI <- function(id) {
                     textOutput(ns("activity_start")),
                     textOutput(ns("activity_location")))),
     fluidRow(column(12, textOutput(ns("activity_title")))),
-    leafletOutput(ns("activity_map"), height = "500px")
+    leafletOutput(ns("activity_map"), height = "500px"),
+   tableOutput(ns("activity_stats_table"))
   )
 }
 
@@ -175,6 +176,22 @@ gpxUploadServer <- function(id) {
         leaflet() |> 
         addTiles() |>
         addPolylines(opacity = 1)
+      
+    })
+    
+    output$activity_stats_table <- renderTable({
+      
+      req(activity_tracks())
+      
+      distance <-  activity_tracks() |>
+                    st_length()  |> 
+        as.numeric() * 0.0006213712
+      
+      distance <- distance  |> round(digits = 2)
+      
+      stats_table <- data.frame(Distance = paste(distance, "miles"))
+      
+      stats_table
       
     })
     
