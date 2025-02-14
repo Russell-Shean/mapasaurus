@@ -82,9 +82,11 @@ gpxUploadServer <- function(id) {
       
       req(activity_track_points())
       
-      activity_track_points()$time |>
+      start_time <- activity_track_points()$time |>
                                           lubridate::as_datetime() |>
-                                          min() |> 
+                                          min()  |> 
+        force_tz(tzone = tz_lookup(activity_track_points()[1,], 
+                                   method = "fast")) |>
                                           format("%B %d, %Y at %H:%m %Z") })
     
     
