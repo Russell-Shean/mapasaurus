@@ -5,7 +5,8 @@ pacman::p_load(dplyr,
                lubridate,
                lutz,
                sf,
-               shiny)
+               shiny,
+               tidygeocoder)
 
 
 

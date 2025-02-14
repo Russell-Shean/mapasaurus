@@ -10,7 +10,9 @@ gpxUploadUI <- function(id) {
               accept = c(".gpx")),
     #DTOutput(ns("gpx_table"))
    # fluidRow(column(12, tags$html(HTML("")))),
-    fluidRow(column(12, htmlOutput(ns("activity_icon")), textOutput(ns("activity_start")))),
+    fluidRow(column(12, htmlOutput(ns("activity_icon")), 
+                    textOutput(ns("activity_start")),
+                    textOutput(ns("activity_location")))),
     fluidRow(column(12, textOutput(ns("activity_title")))),
     leafletOutput(ns("activity_map"), height = "500px")
   )
@@ -85,7 +87,7 @@ gpxUploadServer <- function(id) {
       start_time <- activity_track_points()$time |>
                                           lubridate::as_datetime() |>
                                           min()  |> 
-        force_tz(tzone = tz_lookup(activity_track_points()[1,], 
+        lubridate::force_tz(tzone = lutz::tz_lookup(activity_track_points()[1,], 
                                    method = "fast")) |>
                                           format("%B %d, %Y at %H:%m %Z") })
     
@@ -100,6 +102,60 @@ gpxUploadServer <- function(id) {
       
       
     })
+      
+      
+      output$activity_location <- renderText({
+        
+        req(activity_track_points())
+        
+        rev_geo_location <- tidygeocoder::reverse_geocode(as_tibble(st_coordinates(activity_track_points()))[1,],
+                                                          lat = Y, 
+                                                          long = X, 
+                                                          full_results = TRUE ) %>%
+          
+          # Set default locations in case a location isn't returned
+          # or we don't find the columns we expect
+          mutate(location1 = "",
+                 location2 = "",
+                 location3 = "") %>%
+        
+        
+        # look for different spatial units in order of preference
+          # for some reason these if( city %in% columnnames(.)) things don't work with new pipes)
+        mutate( location1 = if("city" %in% colnames(.)){
+          city
+        } else if("town" %in% colnames(.)){
+          town
+        } else if("hamlet" %in% colnames(.)){
+          hamlet
+        } else {
+          location1
+        },
+        location2 = if("state" %in% colnames(.)){
+          state
+        } else if("province" %in% colnames(.)){
+          provience
+          
+        } else if("county" %in% colnames(.)){
+          county
+        } else{
+          location2
+        },
+        location3 = if("country" %in% colnames(.)){
+          country
+        } else{
+          location3
+        })|>
+          mutate(formated_location = paste(location1, 
+                                           location2, 
+                                           location3,
+                                           sep=", ")) 
+        
+        
+        rev_geo_location |> pull(formated_location)
+        
+        
+      })
     
     output$activity_map <- renderLeaflet({
       
