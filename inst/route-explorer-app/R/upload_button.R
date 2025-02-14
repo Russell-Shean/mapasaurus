@@ -9,6 +9,8 @@ gpxUploadUI <- function(id) {
     fileInput(ns("gpx_file"), "Upload GPX File", 
               accept = c(".gpx")),
     #DTOutput(ns("gpx_table"))
+   # fluidRow(column(12, tags$html(HTML("")))),
+    fluidRow(column(12, htmlOutput(ns("activity_icon")))),
     fluidRow(column(12, textOutput(ns("activity_title")))),
     leafletOutput(ns("activity_map"), height = "500px")
   )
@@ -39,6 +41,34 @@ gpxUploadServer <- function(id) {
     #  req(activity_tracks())
     # datatable(activity_tracks())
     #})
+    
+    output$activity_icon <- renderText({
+      if(activity_tracks()$type == "hiking"){
+        
+        
+        as.character("<image class='cycling-icon' src='images/hiking.png'>")
+        # <a href="https://www.flaticon.com/free-icons/hiking" title="hiking icons">Hiking icons created by juicy_fish - Flaticon</a>
+      
+        } else if(activity_tracks()$type == "running"){
+       
+
+          as.character("<image class='cycling-icon' src='images/jogging.png'>")
+       # https://www.flaticon.com/free-icons/jogging" title="jogging icons">Jogging icons created by Freepik - Flaticon</a>'
+     
+           } else if(activity_tracks()$type == "cycling"){
+      
+              # https://www.flaticon.com/free-icons/bicycle" title="bicycle icons">Bicycle icons created by Freepik - Flaticon</a>
+               as.character("<image class='cycling-icon' src='images/bike.png'>")
+             
+      } else if(activity_tracks()$type == "walking"){
+
+        as.character("<image class='cycling-icon' src='images/walk.png'>")
+      }
+     
+      
+    })
+    
+    
     
   
       output$activity_title <- renderText({
