@@ -110,7 +110,7 @@ gpxUploadServer <- function(id) {
         
         
         
-        rev_geo_location <- tidygeocoder::reverse_geocode(as_tibble(st_coordinates(activity))[1,],
+        rev_geo_location <- tidygeocoder::reverse_geocode(as_tibble(st_coordinates(activity_track_points()))[1,],
                                                           lat = Y, 
                                                           long = X, 
                                                           full_results = TRUE ) %>%
