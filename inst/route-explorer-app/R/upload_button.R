@@ -108,7 +108,9 @@ gpxUploadServer <- function(id) {
         
         req(activity_track_points())
         
-        rev_geo_location <- tidygeocoder::reverse_geocode(as_tibble(st_coordinates(activity_track_points()))[1,],
+        
+        
+        rev_geo_location <- tidygeocoder::reverse_geocode(as_tibble(st_coordinates(activity))[1,],
                                                           lat = Y, 
                                                           long = X, 
                                                           full_results = TRUE ) %>%
@@ -118,38 +120,41 @@ gpxUploadServer <- function(id) {
           mutate(location1 = "",
                  location2 = "",
                  location3 = "") %>%
-        
-        
-        # look for different spatial units in order of preference
-          # for some reason these if( city %in% columnnames(.)) things don't work with new pipes)
-        mutate( location1 = if("city" %in% colnames(.)){
-          city
-        } else if("town" %in% colnames(.)){
-          town
-        } else if("hamlet" %in% colnames(.)){
-          hamlet
-        } else {
-          location1
-        },
-        location2 = if("state" %in% colnames(.)){
-          state
-        } else if("province" %in% colnames(.)){
-          provience
           
-        } else if("county" %in% colnames(.)){
-          county
-        } else{
-          location2
-        },
-        location3 = if("country" %in% colnames(.)){
-          country
-        } else{
-          location3
-        })|>
+          # look for different spatial units in order of preference
+          # for some reason these if( city %in% columnnames(.)) things don't work with new pipes)
+          mutate( location1 = if("city" %in% colnames(.)){
+            city
+          } else if("town" %in% colnames(.)){
+            town
+          } else if("hamlet" %in% colnames(.)){
+            hamlet
+          } else if("county" %in% colnames(.)){
+            county 
+          } else {
+            location1
+          },
+          location2 = if("state" %in% colnames(.)){
+            state
+          } else if("province" %in% colnames(.)){
+            provience
+            
+          } else if("county" %in% colnames(.)){
+            county
+          } else{
+            location2
+          },
+          location3 = if("country" %in% colnames(.)){
+            country
+          } else{
+            location3
+          }) |>
           mutate(formated_location = paste(location1, 
                                            location2, 
                                            location3,
-                                           sep=", ")) 
+                                           sep=", ") %>% 
+                   # remove any leading commas
+                   stringr::str_remove("^, ")) 
         
         
         rev_geo_location |> pull(formated_location)
