@@ -21,6 +21,15 @@
 name: Deploy app
 
 on:
+  push:
+    branches:
+      - main
+      
+    paths:
+      - R/**
+      - inst/**
+      - .github/workflows/deploy-shinylive-gh-pages.yaml
+      
   workflow_call:
     inputs:
       cache-version:
@@ -28,12 +37,16 @@ on:
         default: "1"
         required: false
 
+    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -66,23 +79,23 @@ jobs:
         with:
           path: "site"
 
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: build
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          clean: false
+          branch: gh-pages
+          folder: site
+          target-folder: shinyliveapp
 
     # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    #environment:
+     # name: github-pages
+      #url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    #runs-on: ubuntu-latest
+    #steps:
+    #  - name: Deploy to GitHub Pages
+    #    id: deployment
+    #    uses: actions/deploy-pages@v4
