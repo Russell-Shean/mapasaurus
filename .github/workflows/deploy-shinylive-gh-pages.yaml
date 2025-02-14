@@ -21,12 +21,23 @@
 name: Deploy app
 
 on:
+  push:
+    branches:
+      - main
+      
+    paths:
+      - R/**
+      - inst/**
+      - .github/workflows/deploy-shinylive-gh-pages.yaml
+      
   workflow_call:
     inputs:
       cache-version:
         type: string
         default: "1"
         required: false
+
+    
 
 jobs:
   build:
