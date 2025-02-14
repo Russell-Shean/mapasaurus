@@ -10,7 +10,7 @@ gpxUploadUI <- function(id) {
               accept = c(".gpx")),
     #DTOutput(ns("gpx_table"))
    # fluidRow(column(12, tags$html(HTML("")))),
-    fluidRow(column(12, htmlOutput(ns("activity_icon")))),
+    fluidRow(column(12, htmlOutput(ns("activity_icon")), textOutput(ns("activity_start")))),
     fluidRow(column(12, textOutput(ns("activity_title")))),
     leafletOutput(ns("activity_map"), height = "500px")
   )
@@ -34,6 +34,15 @@ gpxUploadServer <- function(id) {
       
       # Read the GPX file using sf::st_read()
       activity_tracks <- st_read(input$gpx_file$datapath, layer = "tracks", quiet = TRUE)
+      
+      
+    })
+    
+    activity_track_points <- reactive({
+      req(input$gpx_file)
+      
+      activity_track_points <- st_read(input$gpx_file$datapath, layer = "track_points", quiet = TRUE)
+      
       
     })
     
@@ -67,6 +76,16 @@ gpxUploadServer <- function(id) {
      
       
     })
+    
+    
+    output$activity_start <- renderText({ 
+      
+      req(activity_track_points())
+      
+      activity_track_points()$time |>
+                                          lubridate::as_datetime() |>
+                                          min() |> 
+                                          format("%B %d, %Y at %H:%m %Z") })
     
     
     
