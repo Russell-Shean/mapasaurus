@@ -137,7 +137,7 @@ gpxUploadServer <- function(id) {
           location2 = if("state" %in% colnames(.)){
             state
           } else if("province" %in% colnames(.)){
-            provience
+            province
             
           } else if("county" %in% colnames(.)){
             county
