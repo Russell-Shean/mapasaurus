@@ -5,3 +5,5 @@
 ^pkgdown$
 
 ^data$
+^.*\.Rproj$
+^\.Rproj\.user$

@@ -2,6 +2,10 @@
 # Chatgpt is spooky good 😳
 # see also: https://chatgpt.com/c/67a7ace9-f6e8-8008-a3c7-2397147edb5e
 
+# load Erik's elevation plot map
+source("R/elevation_plotter.R")
+
+
 # UI Module
 gpxUploadUI <- function(id) {
   ns <- NS(id)
@@ -14,8 +18,10 @@ gpxUploadUI <- function(id) {
                     textOutput(ns("activity_start")),
                     textOutput(ns("activity_location")))),
     fluidRow(column(12, textOutput(ns("activity_title")))),
-    leafletOutput(ns("activity_map"), height = "500px"),
-   tableOutput(ns("activity_stats_table"))
+   fluidRow(column(12, leafletOutput(ns("activity_map"), height = "500px"))),
+   fluidRow(column(12,tableOutput(ns("activity_stats_table")))),
+  fluidRow(column(12, plotOutput(ns("elevation_plot"), height = "500px"))),
+   fluidRow(column(12, htmlOutput(ns("tnx_Erik"))))
   )
 }
 
@@ -44,7 +50,14 @@ gpxUploadServer <- function(id) {
     activity_track_points <- reactive({
       req(input$gpx_file)
       
-      activity_track_points <- st_read(input$gpx_file$datapath, layer = "track_points", quiet = TRUE)
+      activity_track_points <- st_read(input$gpx_file$datapath, 
+                                       layer = "track_points", 
+                                       quiet = TRUE) |>
+        mutate(ele_diff = ele - lag(ele),
+               time_diff = difftime(time, lag(time)),
+               lead = geometry[row_number() + 1],
+               dist = st_distance(geometry, lead, by_element = TRUE)
+        )
       
       
     })
@@ -182,18 +195,78 @@ gpxUploadServer <- function(id) {
     output$activity_stats_table <- renderTable({
       
       req(activity_tracks())
+      req(activity_track_points())
       
+      # distance calculations ---------------------------------------------
       distance <-  activity_tracks() |>
                     st_length()  |> 
         as.numeric() * 0.0006213712
       
       distance <- distance  |> round(digits = 2)
       
-      stats_table <- data.frame(Distance = paste(distance, "miles"))
+      # elevation calculations -----------------------------------
+      elevation_gain <- activity_track_points() |>
+                  dplyr::filter(ele_diff > 0)|>
+                  dplyr::pull(ele_diff) |>
+                  sum(na.rm = TRUE) * 3.280839895
+      
+      elevation_gain <- elevation_gain |> round()
+      
+      stats_table <- data.frame(Distance = paste(distance, "miles"),
+                                `Elevation Gain` = paste(elevation_gain, "feet"))
       
       stats_table
       
     })
+    
+    output$elevation_plot <- renderPlot({
+      req(input$gpx_file)
+      
+      # modified from: https://shiny.posit.co/r/articles/build/images/
+      
+      # create a temporary file path
+   #   temp_dir <- tempdir()
+  #    outfile <- paste0(temp_dir, '/elevation_plot.png')
+    
+      # run the function to generate a png that we'll return to the user
+     # elevationprofile(filepath = input$gpx_file$datapath,
+      #                 plotsave = TRUE,
+       #                plotsavedir = temp_dir,
+        #              plotname = "elevation_plot")
+      
+      elevationprofile(input$gpx_file$datapath )
+      
+      
+      
+      # Generate the PNG
+     # png(outfile, width = 400, height = 300)
+      
+    #  dev.off()
+      
+      # Return a list containing the filename
+      #list(src = outfile,
+       #    contentType = "image/png",
+          # width = 400,
+           #height = 400 / 2.4,
+        #   alt = "Elevation plot")
+    } #, deleteFile = TRUE
+    )
+        
+
+   # as.character(paste0('<image src=">',
+    #                    temp_dir,
+     #                   '/elevation_plot.png"'))
+      
+      #as.character("<p>text place holder</p>")
+    
+    output$tnx_Erik <- renderText({
+      
+      req(input$gpx_file)
+      
+      as.character("<span>Thanks to Erik de Jong for his super cool <a href='https://github.com/EPdeJ/cyclingplots'>elevation plot</a> function!</span>")
+    })
+      
+
     
     return(activity_tracks)  # Return the data for potential further use
   })
