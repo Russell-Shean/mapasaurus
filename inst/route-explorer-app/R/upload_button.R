@@ -9,7 +9,7 @@ gpxUploadUI <- function(id) {
     fileInput(ns("gpx_file"), "Upload GPX File", 
               accept = c(".gpx")),
     #DTOutput(ns("gpx_table"))
-    fluidRow(column(12, textOutput())),
+    fluidRow(column(12, textOutput(ns("activity_title")))),
     leafletOutput(ns("activity_map"), height = "500px")
   )
 }
@@ -27,13 +27,12 @@ upload_button_Server <- function(id) {
 gpxUploadServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     
-    gpx_data <- reactive({
+    activity_tracks <- reactive({
       req(input$gpx_file)
       
       # Read the GPX file using sf::st_read()
       activity_tracks <- st_read(input$gpx_file$datapath, layer = "tracks", quiet = TRUE)
       
-      return(sf_data)
     })
     
     # output$gpx_table <- renderDT({
@@ -41,7 +40,8 @@ gpxUploadServer <- function(id) {
     # datatable(activity_tracks())
     #})
     
-    output$activity_title <- renderText({
+  
+      output$activity_title <- renderText({
       
       req(activity_tracks())
       
@@ -61,6 +61,6 @@ gpxUploadServer <- function(id) {
       
     })
     
-    return(gpx_data)  # Return the data for potential further use
+    return(activity_tracks)  # Return the data for potential further use
   })
 }
