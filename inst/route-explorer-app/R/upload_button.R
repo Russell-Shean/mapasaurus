@@ -123,7 +123,10 @@ gpxUploadServer <- function(id) {
           
           # look for different spatial units in order of preference
           # for some reason these if( city %in% columnnames(.)) things don't work with new pipes)
-          mutate( location1 = if("city" %in% colnames(.)){
+          mutate( location1 = if("suburb" %in% colnames(.) &
+                                 country %in% c("臺灣","Taiwan")){
+            suburb
+          }else if("city" %in% colnames(.)){
             city
           } else if("town" %in% colnames(.)){
             town
@@ -141,7 +144,9 @@ gpxUploadServer <- function(id) {
             
           } else if("county" %in% colnames(.)){
             county
-          } else{
+          } else if("city" %in% colnames(.)){
+            city
+          }else{
             location2
           },
           location3 = if("country" %in% colnames(.)){
@@ -153,8 +158,8 @@ gpxUploadServer <- function(id) {
                                            location2, 
                                            location3,
                                            sep=", ") %>% 
-                   # remove any leading commas
-                   stringr::str_remove("^, ")) 
+                   # remove any weird commas
+                   stringr::str_remove_all("^, |, ,") ) 
         
         
         rev_geo_location |> pull(formated_location)
