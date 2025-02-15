@@ -8,7 +8,13 @@ pacman::p_load(dplyr,
                shiny,
                tidygeocoder)
 
-
+library(dplyr)
+library(leaflet)
+library(lubridate)
+library(lutz)
+library(sf)
+library(shiny)
+library(tidygeocoder)
 
 # change max file upload size
 # before starting shiny
