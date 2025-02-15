@@ -20,7 +20,7 @@ gpxUploadUI <- function(id) {
     fluidRow(column(12, textOutput(ns("activity_title")))),
    fluidRow(column(12, leafletOutput(ns("activity_map"), height = "500px"))),
    fluidRow(column(12,tableOutput(ns("activity_stats_table")))),
-  fluidRow(column(12, plotOutput(ns("elevation_plot"), height = "500px"))),
+  fluidRow(column(12, plotOutput(ns("elevation_plot"), height = "500px", width = "1200px"))),
    fluidRow(column(12, htmlOutput(ns("tnx_Erik"))))
   )
 }
