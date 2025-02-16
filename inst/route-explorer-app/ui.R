@@ -8,13 +8,7 @@ pacman::p_load(dplyr,
                shiny,
                tidygeocoder)
 
-library(dplyr)
-library(leaflet)
-library(lubridate)
-library(lutz)
-library(sf)
-library(shiny)
-library(tidygeocoder)
+
 
 # change max file upload size
 # before starting shiny
@@ -26,6 +20,14 @@ ui <- fluidPage(
   # include CSS
   tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css"),
   
-  titlePanel("GPX File Upload"),
-  gpxUploadUI("gpxUploader")
+
+  titlePanel("Upload a gpx file to get started!"),
+  gpx_upload_UI("gpxUploader"),
+  activity_header_UI("gpxUploader"),
+  summary_map_UI("gpxUploader"),
+  activity_stats_table_UI("gpxUploader"),
+  elevation_plot_UI("gpxUploader"),
+  aknowledgements_UI("gpxUploader")
+  
+  
 )

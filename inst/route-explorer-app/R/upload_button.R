@@ -7,26 +7,58 @@ source("R/elevation_plotter.R")
 
 
 # UI Module
-gpxUploadUI <- function(id) {
+gpx_upload_UI <- function(id) {
   ns <- NS(id)
   tagList(
     fileInput(ns("gpx_file"), "Upload GPX File", 
-              accept = c(".gpx")),
-    #DTOutput(ns("gpx_table"))
-   # fluidRow(column(12, tags$html(HTML("")))),
-    fluidRow(column(12, htmlOutput(ns("activity_icon")), 
-                    textOutput(ns("activity_start")),
-                    textOutput(ns("activity_location")))),
-    fluidRow(column(12, textOutput(ns("activity_title")))),
-   fluidRow(column(12, leafletOutput(ns("activity_map"), height = "500px"))),
-   fluidRow(column(12,tableOutput(ns("activity_stats_table")))),
-  fluidRow(column(12, plotOutput(ns("elevation_plot"), height = "500px", width = "1200px"))),
-   fluidRow(column(12, htmlOutput(ns("tnx_Erik"))))
+              accept = c(".gpx"))
   )
 }
 
 
-upload_button_Server <- function(id) {
+activity_header_UI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    fluidRow(column(12, htmlOutput(ns("activity_icon")), 
+                    textOutput(ns("activity_start")),
+                    textOutput(ns("activity_location")))),
+    fluidRow(column(12, textOutput(ns("activity_title"))))
+    
+  )
+}
+
+summary_map_UI <- function(id) {
+  ns <- NS(id)
+  tagList(
+
+    fluidRow(column(12, leafletOutput(ns("summary_map"), height = "500px")))
+  )
+}
+
+activity_stats_table_UI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    fluidRow(column(12,tableOutput(ns("activity_stats_table"))))
+  )
+}
+
+elevation_plot_UI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    fluidRow(column(12, plotOutput(ns("elevation_plot"), height = "500px", width = "1200px")))
+  )
+}
+
+aknowledgements_UI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    fluidRow(column(12, htmlOutput(ns("tnx_Erik"))))
+  )
+}
+
+
+
+gpx_upload_Server <- function(id) {
   moduleServer(id, function(input, output, session) {
    sf::st_read(output$files)
   })
@@ -181,7 +213,7 @@ gpxUploadServer <- function(id) {
         
       })
     
-    output$activity_map <- renderLeaflet({
+    output$summary_map <- renderLeaflet({
       
       req(activity_tracks())
       
@@ -268,6 +300,6 @@ gpxUploadServer <- function(id) {
       
 
     
-    return(activity_tracks)  # Return the data for potential further use
+   # return(activity_tracks)  # Return the data for potential further use
   })
 }
